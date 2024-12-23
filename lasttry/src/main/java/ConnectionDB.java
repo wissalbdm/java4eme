@@ -14,9 +14,10 @@ public static Connection getConnection() throws SQLException {
     }
 public static void main(String[] args) {
     try {
-        Connection conn = getConnection();
-        System.out.println("Connexion établie avec succès !");
-        conn.close(); // Fermer la connexion après utilisation
+        try (Connection conn = getConnection()) {
+            System.out.println("Connexion établie avec succès !");
+            // Fermer la connexion après utilisation
+        }
     } catch (SQLException e) {
         System.out.println("Erreur de connexion : " + e.getMessage());
     }
